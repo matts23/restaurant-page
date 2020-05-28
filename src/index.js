@@ -9,7 +9,10 @@ const indexLogic = () =>{
     let currentPage = homePage();
     let header = document.createElement('header');
     let title = document.createElement('h1');
-    title.textContent = 'Restaurant Title'
+    let card = document.createElement('div');
+    card.setAttribute('class', 'card');
+
+    title.textContent = 'Nature\'s Kitchen';
     let nav = document.createElement('nav');
 
     let homeBtn = document.createElement('button');
@@ -32,28 +35,34 @@ const indexLogic = () =>{
     header.appendChild(nav);
 
     homeBtn.addEventListener('click', ()=>{
+        card.removeChild(card.lastChild);
         parentContainer.removeChild(parentContainer.lastChild);
-        parentContainer.appendChild(homePage());
+        card.appendChild(homePage())
+        parentContainer.appendChild(card);
         currentPage = homePage();
     })
 
     menuBtn.addEventListener('click', ()=>{
+        card.removeChild(card.lastChild);
         parentContainer.removeChild(parentContainer.lastChild);
-        parentContainer.appendChild(menuPage());
+        card.appendChild(menuPage())
+        parentContainer.appendChild(card);
         currentPage = menuPage();
-        console.log(currentPage)
     })
 
     contactBtn.addEventListener('click', ()=>{
+        card.removeChild(card.lastChild);
         parentContainer.removeChild(parentContainer.lastChild);
-        parentContainer.appendChild(contactPage());
-        currentPage = contactPage();
+        card.appendChild(contactPage())
+        parentContainer.appendChild(card);
+        currentPage = menuPage();
     })
 
     parentContainer.appendChild(header);
-    console.log(currentPage);
-    parentContainer.appendChild(currentPage);
-    
+    card.appendChild(nav);
+    card.appendChild(homePage())
+    parentContainer.appendChild(card);
+   
     return parentContainer;
 
 };
